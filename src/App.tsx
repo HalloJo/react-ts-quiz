@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import QuestionCard from './components/QuestionCard/QuestionCard';
 import { Difficulty, fetchQuizQuestions, QuestionState } from './API';
 import Button from './components/Button/Button';
+import { GlobalStyle, Wrapper } from './App.styles';
 
 export type AnswerObject = {
   question: string,
@@ -57,21 +58,24 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      <h1>React Quiz!</h1>
-      { gameOver || userAnswers.length === TOTAL_QUESTIONS ? <Button onClick={startQuiz} label="Start" /> : null }
-      
-      { !gameOver ? <p className="score">Score:</p> : null }
-      { loading && <p>Loading Questions..</p> }
-      { !gameOver && !loading && 
-        <QuestionCard 
-          questionNumber={number + 1} 
-          totalQuestions={TOTAL_QUESTIONS} 
-          question={questions[number].question} 
-          answers={questions[number].answers} 
-          userAnswer={userAnswers ? userAnswers[number] : undefined} callBack={checkAnswer}  /> }
-      { !gameOver && !loading && userAnswers.length === number + 1 && number != TOTAL_QUESTIONS - 1 ? <Button onClick={nextQuestion} label="Next question" /> : null }
-    </div>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <h1>React Quiz!</h1>
+        { gameOver || userAnswers.length === TOTAL_QUESTIONS ? <Button className="start" onClick={startQuiz} label="Start" /> : null }
+        
+        { !gameOver ? <p className="score">Score: {score}</p> : null }
+        { loading && <p>Loading Questions..</p> }
+        { !gameOver && !loading && 
+          <QuestionCard 
+            questionNumber={number + 1} 
+            totalQuestions={TOTAL_QUESTIONS} 
+            question={questions[number].question} 
+            answers={questions[number].answers} 
+            userAnswer={userAnswers ? userAnswers[number] : undefined} callBack={checkAnswer}  /> }
+        { !gameOver && !loading && userAnswers.length === number + 1 && number != TOTAL_QUESTIONS - 1 ? <Button className="next" onClick={nextQuestion} label="Next question" /> : null }
+      </Wrapper>
+    </>
   );
 }
 
