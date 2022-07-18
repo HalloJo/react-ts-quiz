@@ -3,6 +3,7 @@ import QuestionCard from './components/QuestionCard/QuestionCard';
 import { Difficulty, fetchQuizQuestions, QuestionState } from './API';
 import Button from './components/Button/Button';
 import { GlobalStyle, Wrapper } from './App.styles';
+import Heading from './components/Heading/Heading';
 
 export type AnswerObject = {
   question: string,
@@ -61,7 +62,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>React Quiz!</h1>
+        <Heading className='title' title="A fun little React Quiz!" />
         { gameOver || userAnswers.length === TOTAL_QUESTIONS ? <Button className="start" onClick={startQuiz} label="Start" /> : null }
         
         { !gameOver ? <p className="score">Score: {score}</p> : null }
