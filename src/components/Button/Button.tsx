@@ -1,12 +1,13 @@
-import { ReactElement } from "react"
+import React, { ReactElement } from "react"
 
 type ButtonProps = {
-    onClick: any;
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    label: string,
 }
 
-const Button = ({onClick}:ButtonProps): ReactElement => (
+const Button = ({onClick, label}:ButtonProps): ReactElement => (
     <button onClick={onClick}>
-        Start!
+        {label}
     </button>
 )
 
