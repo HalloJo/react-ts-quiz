@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactElement } from "react"
 
 type QuestionCardProps = {
     question: string,
@@ -9,7 +9,7 @@ type QuestionCardProps = {
     totalQuestions: number,
 }
 
-const QuestionCard: React.FC<QuestionCardProps> = ({question, answers, callBack, userAnswer, questionNumber, totalQuestions}) => (
+const QuestionCard = ({question, answers, callBack, userAnswer, questionNumber, totalQuestions}: QuestionCardProps): ReactElement => (
     <div>
         <p className="number">Question: {questionNumber} / {totalQuestions}</p>
         <p dangerouslySetInnerHTML={{__html: question}}></p>
