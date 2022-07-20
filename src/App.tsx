@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import QuestionCard from './components/QuestionCard/QuestionCard';
 import { Difficulty, fetchQuizQuestions, QuestionState } from './API';
 import Button from './components/Button/Button';
-import { GlobalStyle, Wrapper } from './App.styles';
+import { GlobalStyle, CenterWrapper, QuizWrapper } from './App.styles';
 import Heading from './components/Heading/Heading';
+import Paragraph from './components/Paragraph/Paragraph';
 
 export type AnswerObject = {
   question: string,
@@ -59,24 +60,26 @@ const App = () => {
 
 
   return (
-    <>
+    <section>
       <GlobalStyle />
-      <Wrapper>
-        <Heading className='title' title="A fun little React Quiz!" />
-        { gameOver || userAnswers.length === TOTAL_QUESTIONS ? <Button className="start" onClick={startQuiz} label="Start" /> : null }
-        
-        { !gameOver ? <p className="score">Score: {score}</p> : null }
-        { loading && <p>Loading Questions..</p> }
-        { !gameOver && !loading && 
-          <QuestionCard 
-            questionNumber={number + 1} 
-            totalQuestions={TOTAL_QUESTIONS} 
-            question={questions[number].question} 
-            answers={questions[number].answers} 
-            userAnswer={userAnswers ? userAnswers[number] : undefined} callBack={checkAnswer}  /> }
-        { !gameOver && !loading && userAnswers.length === number + 1 && number != TOTAL_QUESTIONS - 1 ? <Button className="next" onClick={nextQuestion} label="Next question" /> : null }
-      </Wrapper>
-    </>
+      <CenterWrapper>
+        <QuizWrapper>
+          <Heading className='title' title="A fun little Quiz!" />
+          { gameOver || userAnswers.length === TOTAL_QUESTIONS ? <Button className="start" onClick={startQuiz} label="Start" /> : null }
+          
+          { !gameOver ? <Paragraph className='score'>Score: {score}</Paragraph> : null }
+          { loading && <Paragraph className="loading" children="Loading questions..." /> }
+          { !gameOver && !loading && 
+            <QuestionCard 
+              questionNumber={number + 1} 
+              totalQuestions={TOTAL_QUESTIONS} 
+              question={questions[number].question} 
+              answers={questions[number].answers} 
+              userAnswer={userAnswers ? userAnswers[number] : undefined} callBack={checkAnswer}  /> }
+          { !gameOver && !loading && userAnswers.length === number + 1 && number != TOTAL_QUESTIONS - 1 ? <Button className="next" onClick={nextQuestion} label="Next question" /> : null }
+          </QuizWrapper>
+        </CenterWrapper>
+    </section>
   );
 }
 

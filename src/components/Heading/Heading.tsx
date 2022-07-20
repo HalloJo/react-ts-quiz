@@ -3,7 +3,7 @@ import { H1 } from "./Heading.styles";
 
 type HeadingProps = {
     title: string;
-    className: string;
+    className?: string;
 }
 
 const Heading = ({title, className}: HeadingProps): ReactElement => (

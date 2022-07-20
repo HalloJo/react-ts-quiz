@@ -1,4 +1,6 @@
 import React, { ReactElement } from "react"
+import { ButtonWrapper } from "./Button.styles";
+
 
 type ButtonProps = {
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -7,9 +9,9 @@ type ButtonProps = {
 }
 
 const Button = ({onClick, label, className}:ButtonProps): ReactElement => (
-    <button className={`${className}`} onClick={onClick}>
+    <ButtonWrapper className={`${className}`} onClick={onClick}>
         {label}
-    </button>
+    </ButtonWrapper>
 )
 
 export default Button

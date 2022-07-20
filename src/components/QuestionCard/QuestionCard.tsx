@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react"
 import { AnswerObject } from "../../App"
+import Paragraph from "../Paragraph/Paragraph"
+import { AnswerButton, QuestionWrapper } from  "./QuestionCard.styles"
 
 type QuestionCardProps = {
     question: string,
@@ -11,19 +13,21 @@ type QuestionCardProps = {
 }
 
 const QuestionCard = ({question, answers, callBack, userAnswer, questionNumber, totalQuestions}: QuestionCardProps): ReactElement => (
-    <div>
-        <p className="number">Question: {questionNumber} / {totalQuestions}</p>
-        <p dangerouslySetInnerHTML={{__html: question}}></p>
+    <QuestionWrapper>
+        <Paragraph className="number">
+            Question: {questionNumber} / {totalQuestions}
+        </Paragraph>
+        <Paragraph className="question" >
+            {question}
+        </Paragraph>        
         <div>
             {answers.map(answer => (
-                <div key={answer}>
-                    <button disabled={userAnswer ? true : false} value={answer} onClick={callBack}>
-                        <span dangerouslySetInnerHTML={{__html: answer}} />
-                    </button>
-                </div>
+                <AnswerButton key={answer} correct={userAnswer?.correctAnswer === answer} userClicked={userAnswer?.answer === answer} disabled={userAnswer ? true : false} value={answer} onClick={callBack} >
+                        <span>{answer}</span>
+                </AnswerButton>
             ))}
         </div>
-    </div>
+    </QuestionWrapper>
 )
 
 export default QuestionCard
