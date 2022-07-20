@@ -68,9 +68,9 @@ const App = () => {
 
           { gameOver || userAnswers.length === TOTAL_QUESTIONS ? <Button className="start" onClick={startQuiz} label={ !gameOver ? "Play again!" : "Start"} /> : null }
           
-          { !gameOver ? <Paragraph className='score'>Score: {score}</Paragraph> : null }
+          { userAnswers.length === TOTAL_QUESTIONS ? null : <Paragraph className='score'>Score: {score}</Paragraph> }
 
-          { userAnswers.length === TOTAL_QUESTIONS ? <Paragraph className='result'>Congratulations! You finished the quiz with a score of {score}! Not satisfied? Try again!</Paragraph> : null  }
+          { userAnswers.length === TOTAL_QUESTIONS ? <Paragraph className='result'>Congratulations!<br /> You finished the quiz with a score of <span> {score}!</span> Not satisfied? Try again!</Paragraph> : null  }
 
           { loading && <Paragraph className="loading" children="Loading questions..." /> }
 

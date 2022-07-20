@@ -62,4 +62,18 @@ export const QuizWrapper = styled.div`
     .question {
         margin: 0 0 10px
     }
+
+    .result {
+        background-color: ${palette.correctGreen};
+        margin: 0 0 15px;
+        padding: 15px;
+        border-radius: 20px;
+        color: white;
+        font-weight: 300;
+
+        span {
+            font-weight: 800;
+            text-decoration: underline;
+        }
+    }
 `
