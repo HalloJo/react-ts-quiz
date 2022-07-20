@@ -4,6 +4,7 @@ import { palette } from "../../styles/_Variables";
 export const ButtonWrapper = styled.button`
     border: none;
     padding: 10px;
+    margin: 0 0 20px;
     border-radius: 20px;
     width: 100%;
     background-color: ${palette.lightGreen};
