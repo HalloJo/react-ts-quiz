@@ -28,5 +28,6 @@ export const AnswerButton = styled.button<ButtonProps>`
     width: 100%;
     border-radius: 20px;
     color: ${palette.black};
+    transition: background 0.3s ease;
 
 `
